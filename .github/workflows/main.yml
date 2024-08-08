@@ -4,13 +4,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Install JDK 11
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'temurin'
-          java-version: 11
+      # - name: Checkout
+      #   uses: actions/checkout@v2
+      # - name: Install JDK 11
+      #   uses: actions/setup-java@v2
+      #   with:
+      #     distribution: 'temurin'
+      #     java-version: 11
           
         # 네트워크 테스트용
       - name: Network test
@@ -34,20 +34,20 @@ jobs:
           target: "/home/user/"
 
         # MUST ADD GRADLE
-      - name: Build, tag, and push image to Amazon ECR
-        id: build-image
-        env:
-          SERVICE_TAG: . # Dockerfile의 경로
-          # IMAGE_TAG: ${{ github.sha }} # Github가 제공하는 SHA 암호화 사용
-        run: |
-          # Build a docker container and
-          # push it to ECR so that it can
-          # be deployed to ECS.
-          docker build -t TEST/TEST:latest $SERVICE_TAG
-          docker push TEST/TEST:latest
-          # 여기에서 사용한 output(name = image)을 아래에서 사용
-          # echo "image=$ECR_REGISTRY/$ECR_REPOSITORY_NAME:$IMAGE_TAG" >> $GITHUB_OUTPUT
+      # - name: Build, tag, and push image to Amazon ECR
+      #   id: build-image
+      #   env:
+      #     SERVICE_TAG: . # Dockerfile의 경로
+      #     # IMAGE_TAG: ${{ github.sha }} # Github가 제공하는 SHA 암호화 사용
+      #   run: |
+      #     # Build a docker container and
+      #     # push it to ECR so that it can
+      #     # be deployed to ECS.
+      #     docker build -t TEST/TEST:latest $SERVICE_TAG
+      #     docker push TEST/TEST:latest
+      #     # 여기에서 사용한 output(name = image)을 아래에서 사용
+      #     # echo "image=$ECR_REGISTRY/$ECR_REPOSITORY_NAME:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
-          # MUST ADD DEPLOY PART
+      #     # MUST ADD DEPLOY PART
 
 
