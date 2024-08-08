@@ -11,6 +11,27 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 11
+          
+        # 네트워크 테스트용
+      - name: Network test
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPN_URL }}
+          username: ${{ secrets.VPN_USER }}
+          password: ${{ secrets.VPN_PASSWORD }}
+          port: ${{ secrets.VPN_PORT }}
+          script: echo "hi, dear!!!!"
+
+
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }} 
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          # port: ${{ secrets.PORT }}
+          source: ./README.md
+          target: "/home/user/"
 
         # MUST ADD GRADLE
       - name: Build, tag, and push image to Amazon ECR
@@ -29,12 +50,4 @@ jobs:
 
           # MUST ADD DEPLOY PART
 
-      - name: copy file via ssh password
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.HOST }} 
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
-          source: "jar file"
-          target: "/home/usr/test"
+
