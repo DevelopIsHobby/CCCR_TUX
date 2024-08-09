@@ -20,7 +20,9 @@ jobs:
           username: ${{ secrets.VPN_USER }}
           password: ${{ secrets.VPN_PASSWORD }}
           port: ${{ secrets.VPN_PORT }}
-          script: echo "hi, dear!!!!"
+          script: |
+            yes
+            echo "hi, dear!!!!"
 
 
       - name: copy file via ssh password
