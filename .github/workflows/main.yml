@@ -32,7 +32,7 @@ jobs:
           username: ${{ secrets.VPN_USER }}
           password: ${{ secrets.VPN_PASSWORD }}
           port: ${{ secrets.VPN_PORT }}
-          source: "./README.md"
+          source: "test/a.txt"
           target: /home/user/test
 
         # MUST ADD GRADLE
