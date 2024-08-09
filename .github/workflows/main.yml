@@ -13,17 +13,17 @@ jobs:
       #     java-version: 11
           
         #ssh
-      - name: Network ssh
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.VPN_URL }}
-          username: ${{ secrets.VPN_USER }}
-          password: ${{ secrets.VPN_PASSWORD }}
-          port: ${{ secrets.VPN_PORT }}
-          script: |
-            yes
-            cd /home/user/weather
-            pwd
+      # - name: Network ssh
+      #   uses: appleboy/ssh-action@v1.0.3
+      #   with:
+      #     host: ${{ secrets.VPN_URL }}
+      #     username: ${{ secrets.VPN_USER }}
+      #     password: ${{ secrets.VPN_PASSWORD }}
+      #     port: ${{ secrets.VPN_PORT }}
+      #     script: |
+      #       yes
+      #       cd /home/user/weather
+      #       pwd
 
         #scp
       - name: scp working
@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets.VPN_USER }}
           password: ${{ secrets.VPN_PASSWORD }}
           port: ${{ secrets.VPN_PORT }}
-          source: ./README.md
+          source: "./README.md"
           target: "/home/user/test"
 
         # MUST ADD GRADLE
