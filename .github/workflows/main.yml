@@ -4,13 +4,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v2
-      # - name: Install JDK 11
-      #   uses: actions/setup-java@v2
-      #   with:
-      #     distribution: 'temurin'
-      #     java-version: 11
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install JDK 11
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: 11
           
         #ssh
       # - name: Network ssh
@@ -21,7 +21,6 @@ jobs:
       #     password: ${{ secrets.VPN_PASSWORD }}
       #     port: ${{ secrets.VPN_PORT }}
       #     script: |
-      #       yes
       #       cd /home/user/weather
       #       pwd
 
@@ -34,7 +33,7 @@ jobs:
           password: ${{ secrets.VPN_PASSWORD }}
           port: ${{ secrets.VPN_PORT }}
           source: "./README.md"
-          target: "/home/user/test"
+          target: /home/user/test
 
         # MUST ADD GRADLE
       # - name: Build, tag, and push image to Amazon ECR
