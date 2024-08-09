@@ -1,0 +1,436 @@
+<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Dimension by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+		<noscript><link rel="stylesheet" th:href="@{/assets/css/noscript.css}" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="logo">
+							<span class="icon fa-gem"></span>
+						</div>
+						<div class="content">
+							<div class="inner">
+								<h2 th:text="|현재시간 : ${data.time}|">현재 시간 : 2024-08-04 14:07:35</h2>
+								<p th:text="|위치 : ${data.address}|">노원구 중계본동</p>
+								<p th:text="|날씨 : ${data.weather}|">맑음</p>
+								<p th:text="|온도 : ${data.temp}&#8451| ">온도 : 35.1 &#8451</p>
+								<p th:text="|체감온도: ${data.feeling}&#8451|">체감온도 : 34.6 &#8451</p>
+								<p th:text="|습도 : ${data.humidity}|">습도 : 45%</p>
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li class="dust-li">
+									<a href="#intro"
+									   data-default-text="미세먼지">미세먼지</a>
+								</li>
+								<input type="hidden" th:value="${data.dust}" id="dust">
+								<li class="mini-dust-li">
+									<a href="#work"
+									   data-default-text="초미세먼지">초미세먼지</a>
+								</li>
+								<input type="hidden" th:value="${data.mini_dust}" id="mini_dust">
+								<li class="uv-li">
+									<a href="#about"
+									   data-default-text="자외선"
+									   data-hover-text="${data.uv}">자외선</a>
+								</li>
+								<input type="hidden" th:value="${data.uv}" id="uv">
+								<li class="rain-li">
+									<a href="#contact"
+									   data-default-text="비 올 확률">비 올 확률</a>
+								</li>
+								<input type="hidden" th:value="${data.rain}" id="rain">
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Intro -->
+							<article id="intro">
+								<h2 class="major">미세먼지</h2>
+								<span class="image main"><img src="images/미세먼지.jpg" alt="" id="dust-img" /></span>
+								<p>----- <b id="dust-b">나쁨</b> -----</p>
+								<p>미세먼지! 왜 조심해야 하나요?</p>
+								<p>	- 미세먼지로 쉼쉴 때 코 점막을 통해서 걸러지지 않고 인체 내부까지 직접 침투하기도 합니다.<br>
+									- 단시간 흡입으로는 갑자기 신체변화가 나타나지 않으나, 장기적·지속적 노출시 천식과 폐질환, 심혈관질환 등 각종 질병이 유발될 수 있습니다</p>
+							</article>
+
+						<!-- Work -->
+							<article id="work">
+								<h2 class="major">초미세먼지</h2>
+								<span class="image main"><img src="images/초미세먼지.jpg" alt="" id="mini-dust-img" /></span>
+								<p>----- <b id="mini-dust-b">나쁨</b> -----</p>
+								<p>초미세먼지는 어디에서 많이 생길까?</p>
+								<p>	- 화력발전소와 같은 공장이 23%, 자동차에서 21%정도 발생합니다. 사람이나 가축에게서도 14%가 발생합니다.<br>
+									- 가장 많은 것은 의의로 나무입니다. 나무는 유기탄소를 내뿝는데 이 역시 초미세먼지가 되며 무려 33%를 차지합니다.</p>
+							</article>
+
+						<!-- About -->
+							<article id="about">
+								<h2 class="major">자외선</h2>
+								<span class="image main"><img src="images/자외선.jpg" alt="" /></span>
+								<p>----- <b>[[${data.uv}]]</b> -----</p>
+								<p>그늘로 숨어도 '자외선' 못피해 ... 자외선 차단제 올바른 사용법은?</p>
+								<p> - 자외선은 흐린날에도 존재하고, 유리창이나 커튼으로도 막을 수 없어 실내도 안전지대가 아닙니다.<br>
+									- 자외선 차안제를 실내외 관계없이 발라야하는 이유입니다.
+								</p>
+							</article>
+
+						<!-- Contact -->
+							<article id="contact">
+								<h2 class="major">비 올 확률</h2>
+								<span class="image main"><img src="images/맑음.jpg" alt="" id="rain-img" /></span>
+								<p>----- <b id="rain-b">[[${data.rain}]]</b> -----</p>
+								<p id="rain-p">우산을 챙기지 않으셔도 됩니다.</p>
+							</article>
+
+						<!-- Elements -->
+							<article id="elements">
+								<h2 class="major">Elements</h2>
+
+								<section>
+									<h3 class="major">Text</h3>
+									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+									<hr />
+									<h2>Heading Level 2</h2>
+									<h3>Heading Level 3</h3>
+									<h4>Heading Level 4</h4>
+									<h5>Heading Level 5</h5>
+									<h6>Heading Level 6</h6>
+									<hr />
+									<h4>Blockquote</h4>
+									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+									<h4>Preformatted</h4>
+									<pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+    print 'Iteration ' + i;
+    deck.shuffle();
+    i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+								</section>
+
+								<section>
+									<h3 class="major">Lists</h3>
+
+									<h4>Unordered</h4>
+									<ul>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Sagittis adipiscing.</li>
+										<li>Felis enim feugiat.</li>
+									</ul>
+
+									<h4>Alternate</h4>
+									<ul class="alt">
+										<li>Dolor pulvinar etiam.</li>
+										<li>Sagittis adipiscing.</li>
+										<li>Felis enim feugiat.</li>
+									</ul>
+
+									<h4>Ordered</h4>
+									<ol>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Etiam vel felis viverra.</li>
+										<li>Felis enim feugiat.</li>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Etiam vel felis lorem.</li>
+										<li>Felis enim et feugiat.</li>
+									</ol>
+									<h4>Icons</h4>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+									</ul>
+
+									<h4>Actions</h4>
+									<ul class="actions">
+										<li><a href="#" class="button primary">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 class="major">Table</h3>
+									<h4>Default</h4>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Item One</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Two</td>
+													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Three</td>
+													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Four</td>
+													<td>Vitae integer tempus condimentum.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Five</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+
+									<h4>Alternate</h4>
+									<div class="table-wrapper">
+										<table class="alt">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Item One</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Two</td>
+													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Three</td>
+													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Four</td>
+													<td>Vitae integer tempus condimentum.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Five</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+								</section>
+
+								<section>
+									<h3 class="major">Buttons</h3>
+									<ul class="actions">
+										<li><a href="#" class="button primary">Primary</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="#" class="button">Default</a></li>
+										<li><a href="#" class="button small">Small</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
+										<li><a href="#" class="button icon solid fa-download">Icon</a></li>
+									</ul>
+									<ul class="actions">
+										<li><span class="button primary disabled">Disabled</span></li>
+										<li><span class="button disabled">Disabled</span></li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 class="major">Form</h3>
+									<form method="post" action="#">
+										<div class="fields">
+											<div class="field half">
+												<label for="demo-name">Name</label>
+												<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
+											</div>
+											<div class="field half">
+												<label for="demo-email">Email</label>
+												<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
+											</div>
+											<div class="field">
+												<label for="demo-category">Category</label>
+												<select name="demo-category" id="demo-category">
+													<option value="">-</option>
+													<option value="1">Manufacturing</option>
+													<option value="1">Shipping</option>
+													<option value="1">Administration</option>
+													<option value="1">Human Resources</option>
+												</select>
+											</div>
+											<div class="field half">
+												<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+												<label for="demo-priority-low">Low</label>
+											</div>
+											<div class="field half">
+												<input type="radio" id="demo-priority-high" name="demo-priority">
+												<label for="demo-priority-high">High</label>
+											</div>
+											<div class="field half">
+												<input type="checkbox" id="demo-copy" name="demo-copy">
+												<label for="demo-copy">Email me a copy</label>
+											</div>
+											<div class="field half">
+												<input type="checkbox" id="demo-human" name="demo-human" checked>
+												<label for="demo-human">Not a robot</label>
+											</div>
+											<div class="field">
+												<label for="demo-message">Message</label>
+												<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" class="primary" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</form>
+								</section>
+
+							</article>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; FOR CCCR, TUX. Design: <a href="https://html5up.net">html5up</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+			<script th:src="@{assets/js/jquery.min.js}"></script>
+			<script th:src="@{assets/js/browser.min.js}"></script>
+			<script th:src="@{assets/js/breakpoints.min.js}"></script>
+			<script th:src="@{assets/js/util.js}"></script>
+			<script th:src="@{assets/js/main.js}"></script>
+
+	</body>
+	<script>
+		dust = document.getElementById("dust").value;
+		console.log(dust);
+		dust_li = document.querySelector(".dust-li a")
+		dust_li.addEventListener('mouseover', function() {
+			dust_li.textContent = dust;
+		})
+		dust_li.addEventListener('mouseout', function() {
+			dust_li.textContent = dust_li.getAttribute('data-default-text');
+		})
+
+		mini_dust = document.getElementById("mini_dust").value;
+		console.log(mini_dust);
+		mini_dust_li = document.querySelector(".mini-dust-li a")
+		mini_dust_li.addEventListener('mouseover', function() {
+			mini_dust_li.textContent = mini_dust;
+		})
+		mini_dust_li.addEventListener('mouseout', function() {
+			mini_dust_li.textContent = mini_dust_li.getAttribute('data-default-text');
+		})
+
+		uv = document.getElementById("uv").value;
+		console.log(uv);
+		uv_li = document.querySelector(".uv-li a")
+		uv_li.addEventListener('mouseover', function() {
+			uv_li.textContent = uv;
+		})
+		uv_li.addEventListener('mouseout', function() {
+			uv_li.textContent = uv_li.getAttribute('data-default-text');
+		})
+
+		rain = document.getElementById("rain").value;
+		console.log(rain);
+		rain_li = document.querySelector(".rain-li a")
+		rain_li.addEventListener('mouseover', function() {
+			if(rain === '-') {
+				rain = 0;
+			}
+			rain_li.textContent = rain;
+		})
+		rain_li.addEventListener('mouseout', function() {
+			rain_li.textContent = rain_li.getAttribute('data-default-text');
+		})
+
+		dust_img = document.querySelector("#dust-img")
+		dust_b = document.querySelector("#dust-b")
+		if(dust === '좋음') {
+			dust_img.src = 'images/미세먼지좋음.jpg'
+			dust_b.textContent = '좋음'
+		} else if(dust ==='보통') {
+			dust_img.src = 'images/미세먼지좋음.jpg'
+			dust_b.textContent = '보통'
+		} else if(dust ==='매우나쁨') {
+			dust_b.textContent = '매우나쁨'
+		}
+
+		rain_img = document.querySelector("#rain-img")
+		rain_b = document.querySelector("#rain-b")
+		rain_p = document.querySelector("#rain-p")
+		if(rain === '-') {
+			rain = 0;
+			rain_b.textContent = '비 안옴!'
+		}
+
+		if(rain !== 0) {
+			rain_img.src = 'images/비.jpg'
+			rain_p.textContent = '비가 올 수도 있습니다.'
+		}
+
+	</script>
+</html>
