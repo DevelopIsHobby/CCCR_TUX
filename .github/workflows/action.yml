@@ -54,12 +54,12 @@ jobs:
            docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }}
       - name: Update Kubernetes manifest
         run: |
-          sed -i 's#image:.*#image: ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }}#' /home/user/cicd/weather.yml
+          sed -i 's#image:.*#image: ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }}#' ./weather.yml
 
       - name: Commit and push changes
         run: |
           git config --global user.email "DevelopIsHobby@naver.com"
           git config --global user.name "Minseok Kim"
-          git add /home/user/cicd/weather.yml
+          git add ./weather.yml
           git commit -m "Update Kubernetes manifest with new Docker image"
           git push origin main
