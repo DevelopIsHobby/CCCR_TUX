@@ -61,6 +61,7 @@ jobs:
         run: |
           git config --global user.email "minorchy@naver.com"
           git config --global user.name "DevelopIsHobby"
+          git pull --rebase origin main # 원격 저장소의 변경 사항을 로컬로 가져옵니다.
           git add ./weather.yml
           git commit -m "Update Kubernetes manifest with new Docker image"
           git push https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/${{ github.repository }}.git HEAD:main
