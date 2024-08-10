@@ -5,8 +5,8 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # 현재 디렉토리의 .jar파일을 파드 안으로 복사
-COPY /home/user/cicd/tux_weather_test-0.0.3.jar /app/weather.jar
+COPY build/libs/tux_weather_test-0.0.3.jar weather.jar
 
 # 애플리케이션 실행 명령어
-ENTRYPOINT ["java", "-jar", "/app/weather.jar"]
+ENTRYPOINT ["java", "-jar", "/weather.jar"]
 
