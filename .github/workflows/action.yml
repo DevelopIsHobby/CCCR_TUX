@@ -19,6 +19,14 @@ jobs:
         # uses의 경우 Marketplace에 사전 정의된 내용을 이용하여 step 수행 
         uses: actions/checkout@v3
         
+      - name: Copy Secret variable
+        env:
+          ENV_SECRET: ${{ secrets.ENV_SECRET }}
+          ENV_SECRET_DIR: src/main/resources
+          ENV_SECRET_DIR_FILE_NAME: .env
+        run:
+          echo $ENV_SECRET | base64 --decode > $ENV_SECRET_DIR/$ENV_SECRET_DIR_FILE_NAME
+ 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
