@@ -61,7 +61,6 @@ jobs:
         run: |
           git config --global user.email "minorchy@naver.com"
           git config --global user.name "DevelopIsHobby"
-          git pull --rebase origin main 
           git add ./weather.yml
           git commit -m "Update Kubernetes manifest with new Docker image"
           git push https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/${{ github.repository }}.git HEAD:main
