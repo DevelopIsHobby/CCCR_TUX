@@ -35,7 +35,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-              #scp
+        #scp
       - name: scp working
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -58,20 +58,20 @@ jobs:
         id: build_and_push_server 
         run: |
            docker build --platform linux/arm64 -f Dockerfile -t ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }} .
-           docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }}
-          
+           docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }}          
+           
         #ssh
-      - name: Network ssh
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.VPN_URL }}
-          username: ${{ secrets.VPN_USER }}
-          password: ${{ secrets.VPN_PASSWORD }}
-          port: ${{ secrets.VPN_PORT }}
-          script: |
-                docker images
-                docker ps -a
-                echo "hello, docker ${{ env.VERSION }}-${{ github.run_number }}" > /home/user/echo/poo.txt
+      
+      #- name: Network ssh
+      #  uses: appleboy/ssh-action@v1.0.3
+      #  with:
+      #    host: ${{ secrets.VPN_URL }}
+      #    username: ${{ secrets.VPN_USER }}
+      #    password: ${{ secrets.VPN_PASSWORD }}
+      #    port: ${{ secrets.VPN_PORT }}
+      #    script: |
+      #          docker pull ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }}
+                
             
       # sudo docker pull ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}/minjung:weather-${{ env.VERSION }}-${{ github.run_number }}
             
