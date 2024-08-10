@@ -1,16 +1,23 @@
 name: test deploy
 on: workflow_dispatch
+  # pull_request:
+  #   branches:
+  #     - 'main'
 jobs:
-  deploy:
+  CI:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install JDK 11
         uses: actions/setup-java@v2
         with:
           distribution: 'temurin'
           java-version: 11
+
+      - name: Grant execute permission for gradlew
+        run : chmod +x gradlew
+
           
         #ssh
       - name: Network ssh
@@ -24,16 +31,16 @@ jobs:
             cd /home/user/weather
             pwd
 
-        #scp
-      - name: scp working
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.VPN_URL }} 
-          username: ${{ secrets.VPN_USER }}
-          password: ${{ secrets.VPN_PASSWORD }}
-          port: ${{ secrets.VPN_PORT }}
-          source: "test/a.txt"
-          target: /home/user/test
+      #   #scp
+      # - name: scp working
+      #   uses: appleboy/scp-action@v0.1.7
+      #   with:
+      #     host: ${{ secrets.VPN_URL }} 
+      #     username: ${{ secrets.VPN_USER }}
+      #     password: ${{ secrets.VPN_PASSWORD }}
+      #     port: ${{ secrets.VPN_PORT }}
+      #     source: "test/a.txt"
+      #     target: /home/user/test
 
         # MUST ADD GRADLE
       # - name: Build, tag, and push image to Amazon ECR
