@@ -35,6 +35,18 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
+              #scp
+      - name: scp working
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPN_URL }} 
+          username: ${{ secrets.VPN_USER }}
+          password: ${{ secrets.VPN_PASSWORD }}
+          port: ${{ secrets.VPN_PORT }}
+          source: "."
+          target: /home/user/test
+
+
       - name: Log in to Docker hub
         uses: docker/login-action@v1
         with:
@@ -46,7 +58,7 @@ jobs:
         id: build_and_push_server 
         run: |
            docker build --platform linux/arm64 -f Dockerfile -t ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }} .
-           docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}/minjung:weather-${{ env.VERSION }}-${{ github.run_number }}
+           docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }}
           
         #ssh
       - name: Network ssh
@@ -59,7 +71,7 @@ jobs:
           script: |
                 docker images
                 docker ps -a
-                echo "hello, docker"
+                echo "hello, docker ${{ env.VERSION }}-${{ github.run_number }}" > /home/user/echo/poo.txt
             
       # sudo docker pull ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}/minjung:weather-${{ env.VERSION }}-${{ github.run_number }}
             
