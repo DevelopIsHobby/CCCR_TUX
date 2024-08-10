@@ -42,5 +42,5 @@ jobs:
         id: build_and_push_server
          # run의 경우 직접 기재한 커맨드 수행 
         run: |
-           docker build -f Dockerfile -t ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }} .
-           docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}
+           docker build --platform linux/arm64 -f Dockerfile -t ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }} .
+           docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }}
