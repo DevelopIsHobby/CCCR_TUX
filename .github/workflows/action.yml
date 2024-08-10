@@ -52,3 +52,8 @@ jobs:
         run: |
            docker build --platform linux/arm64 -f Dockerfile -t ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }} .
            docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }}
+
+        # 쿠버네티스의 이미지를 도커허브의 최신 이미지로 변경
+      - name: Update Kubernetes deployment
+        run: |
+           kubectl set image deployment/weather-deployment weather-server=${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:latest
