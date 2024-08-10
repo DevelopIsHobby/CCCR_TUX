@@ -9,6 +9,7 @@ on:
 env:
   DOCKER_REGISTRY: docker.io
   IMAGE_REPO: mskim6518/argocd-k8s
+  VERSION : 0.0.3
 
 jobs:
   ci_cd_pipeline:
@@ -41,5 +42,5 @@ jobs:
         id: build_and_push_server
          # run의 경우 직접 기재한 커맨드 수행 
         run: |
-           docker build -f Dockerfile -t ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:${{ github.sha }} .
-           docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:${{ github.sha }}
+           docker build -f Dockerfile -t ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }} .
+           docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}
