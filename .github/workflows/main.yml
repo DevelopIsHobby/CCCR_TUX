@@ -21,6 +21,14 @@ jobs:
           distribution: 'adopt'
           java-version: 17
 
+      - name: Copy Secret variable
+        env:
+          ENV_SECRET: ${{ secrets.ENV_SECRET }}
+          ENV_SECRET_DIR: src/main/resources
+          ENV_SECRET_DIR_FILE_NAME: .env
+        run:
+          echo $ENV_SECRET | base64 --decode > $ENV_SECRET_DIR/$ENV_SECRET_DIR_FILE_NAME
+
       - name: Grant execute permission for gradlew
         run : chmod +x gradlew
 
@@ -38,7 +46,7 @@ jobs:
         id: build_and_push_server 
         run: |
            docker build --platform linux/arm64 -f Dockerfile -t ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }} .
-           docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }}
+           docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}/minjung:weather-${{ env.VERSION }}-${{ github.run_number }}
           
         #ssh
       - name: Network ssh
@@ -49,19 +57,24 @@ jobs:
           password: ${{ secrets.VPN_PASSWORD }}
           port: ${{ secrets.VPN_PORT }}
           script: |
-            cd /home/user/weather
-            pwd
-
-        #scp
-      - name: scp working
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.VPN_URL }} 
-          username: ${{ secrets.VPN_USER }}
-          password: ${{ secrets.VPN_PASSWORD }}
-          port: ${{ secrets.VPN_PORT }}
-          source: "test/a.txt"
-          target: /home/user/test
+                docker images
+                docker ps -a
+                echo "hello, docker"
+            
+      # sudo docker pull ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}/minjung:weather-${{ env.VERSION }}-${{ github.run_number }}
+            
+      
+      
+      #   #scp
+      # - name: scp working
+      #   uses: appleboy/scp-action@v0.1.7
+      #   with:
+      #     host: ${{ secrets.VPN_URL }} 
+      #     username: ${{ secrets.VPN_USER }}
+      #     password: ${{ secrets.VPN_PASSWORD }}
+      #     port: ${{ secrets.VPN_PORT }}
+      #     source: "test/a.txt"
+      #     target: /home/user/test
 
         # MUST ADD GRADLE
       # - name: Build, tag, and push image to Amazon ECR
