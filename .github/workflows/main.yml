@@ -1,23 +1,44 @@
-name: test deploy
+name: Build test deploy
 on: workflow_dispatch
-  # pull_request:
-  #   branches:
-  #     - 'main'
+  # pull-request:
+  #   brances:
+  #     - main
+
+env:
+  DOCKER_REGISTRY: docker.io
+  IMAGE_REPO: mskim6518/argocd-k8s
+  VERSION : 0.0.3
+      
 jobs:
-  CI:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Install JDK 11
-        uses: actions/setup-java@v2
+      - name: Install JDK 17
+        uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
-          java-version: 11
+          distribution: 'adopt'
+          java-version: 17
 
       - name: Grant execute permission for gradlew
         run : chmod +x gradlew
 
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Log in to Docker hub
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.DOCKER_REGISTRY }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: server image build and docker hub push
+        id: build_and_push_server 
+        run: |
+           docker build --platform linux/arm64 -f Dockerfile -t ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }} .
+           docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}-${{ github.run_number }}
           
         #ssh
       - name: Network ssh
@@ -31,16 +52,16 @@ jobs:
             cd /home/user/weather
             pwd
 
-      #   #scp
-      # - name: scp working
-      #   uses: appleboy/scp-action@v0.1.7
-      #   with:
-      #     host: ${{ secrets.VPN_URL }} 
-      #     username: ${{ secrets.VPN_USER }}
-      #     password: ${{ secrets.VPN_PASSWORD }}
-      #     port: ${{ secrets.VPN_PORT }}
-      #     source: "test/a.txt"
-      #     target: /home/user/test
+        #scp
+      - name: scp working
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPN_URL }} 
+          username: ${{ secrets.VPN_USER }}
+          password: ${{ secrets.VPN_PASSWORD }}
+          port: ${{ secrets.VPN_PORT }}
+          source: "test/a.txt"
+          target: /home/user/test
 
         # MUST ADD GRADLE
       # - name: Build, tag, and push image to Amazon ECR
@@ -58,5 +79,6 @@ jobs:
       #     # echo "image=$ECR_REGISTRY/$ECR_REPOSITORY_NAME:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
       #     # MUST ADD DEPLOY PART
+
 
 
