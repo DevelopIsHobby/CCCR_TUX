@@ -8,5 +8,5 @@ WORKDIR /app
 COPY build/libs/tux_weather_test-0.0.3.jar /app/weather.jar
 
 # 애플리케이션 실행 명령어
-#ENTRYPOINT ["java", "-jar", "/app/weather.jar"]
+ENTRYPOINT ["java", "-jar", "/app/weather.jar"]
 
