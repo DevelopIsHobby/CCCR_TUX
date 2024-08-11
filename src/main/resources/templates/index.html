@@ -398,9 +398,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 		console.log(rain);
 		rain_li = document.querySelector(".rain-li a")
 		rain_li.addEventListener('mouseover', function() {
-			if(rain === '-') {
-				rain = 0;
-			}
 			rain_li.textContent = rain;
 		})
 		rain_li.addEventListener('mouseout', function() {
@@ -422,11 +419,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 		rain_img = document.querySelector("#rain-img")
 		rain_b = document.querySelector("#rain-b")
 		rain_p = document.querySelector("#rain-p")
-		if(rain === 0.0) {
-			rain = 0;
-			rain_b.textContent = '비 안옴!'
-		}
-
 		if(rain !== 0.0) {
 			rain_img.src = 'images/비.jpg'
 			rain_p.textContent = '비가 올 수도 있습니다.'
