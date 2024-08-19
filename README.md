@@ -1,7 +1,21 @@
-### 2024 채용연계형 SW전문인재양성사업 성과보고회 우수상 수상
+## 2024 채용연계형 SW전문인재양성사업 성과보고회 우수상 수상
 
 [발표자료 다운로드](https://github.com/user-attachments/files/16655434/_CCCR_TUX.pdf)
 
+## 링크
+- 가상머신 생성 : https://github.com/DevelopIsHobby/CCCR_TUX/wiki/%5BTUX%5D-0.-Create-VMs-with-Vagrant
+- k8s cluster : https://github.com/DevelopIsHobby/CCCR_TUX/wiki/%5BTUX%5D-1.-Kubernetes-Installation
+- Ceph storage : https://github.com/DevelopIsHobby/CCCR_TUX/wiki/%5BTUX%5D-2.-Ceph-Storage
+- MetalLB : https://github.com/DevelopIsHobby/CCCR_TUX/wiki/%5BTUX%5D-3.-Kubernetes-MetalLB
+- MachbaseDB : https://github.com/DevelopIsHobby/CCCR_TUX/wiki/%5BTUX%5D-4.-Machbase-Installation
+- Ansible : https://github.com/DevelopIsHobby/CCCR_TUX/wiki/%5BTUX%5D-5.-IaC-Ansible
+- Web Crawling : https://github.com/DevelopIsHobby/CCCR_TUX/wiki/%5BTUX%5D-6.-Web-Crawing-with-Python
+- Prometheus, Grafana : https://github.com/DevelopIsHobby/CCCR_TUX/wiki/%5BTUX%5D-7.-Prometheus,-Grafana(Monitoring)
+- ArgoCD : https://github.com/DevelopIsHobby/CCCR_TUX/wiki/%5BTUX%5D-8.-Argo-CD
+- CI : https://github.com/DevelopIsHobby/CCCR_TUX/wiki/%5BTUX%5D-15.-Continuous-Integration(CI)
+- CD : https://github.com/DevelopIsHobby/CCCR_TUX/wiki/%5BTUX%5D-17.-Kubernetes-Deployment-Test-&-ArgoCD
+
+## 발표 내용
 ![1](https://github.com/user-attachments/assets/c74ed07c-125f-4079-b72b-b016cdcb37eb)
 ![2](https://github.com/user-attachments/assets/db56e65c-da6e-4ee4-aeae-1de507a9b4b8)
 ![3](https://github.com/user-attachments/assets/54401985-56fd-4070-9cfb-30d00cede09e)
@@ -41,7 +55,6 @@
 ![37](https://github.com/user-attachments/assets/c952941c-03b6-4de1-adbf-c7ec2144f714)
 ![38](https://github.com/user-attachments/assets/50b59ff0-59f0-4447-8060-9880b0f7dd70)
 ![39](https://github.com/user-attachments/assets/10ea7053-8ec3-446c-81bc-7fe4881eb652)
-
 
 
 
