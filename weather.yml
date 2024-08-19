@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: weather-server
-        image: docker.io/mskim6518/argocd-k8s:weather-0.0.3-49
+        image: docker.io/mskim6518/argocd-k8s:weather-0.0.3-50
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
